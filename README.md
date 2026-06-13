@@ -125,7 +125,7 @@ making the algorithm essentially `O(log n)` in practice.
 ### 5.2  Installation
 
 ```bash
-git clone https://github.com/Alexey-Yakushev-YUCT/YUCT-Prime-Numbers.git
+git clone [https://github.com/Alexey-Yakushev-YUCT/YUCT-Prime-Numbers](https://github.com/Alexey-Yakushev-YUCT/Prime-Numbers/).git
 cd YUCT-Prime-Numbers
 
 5.3 Usage

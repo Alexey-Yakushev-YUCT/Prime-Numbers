@@ -4,7 +4,7 @@ YUCT Prime Formula: instant n-th prime computation via fractal coordination scal
 
 **Predict the *n*-th prime number without sieving, using the universal
 YUCT error law**  
-`ε = κ_c α K_eff^{-β}` (0.67) with `β = 2/3` and `κ_c = 1/3`.
+`ε = κ_c α K_eff^{-β}` with `β = 2/3` (0.67) and `κ_c = 1/3`.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)

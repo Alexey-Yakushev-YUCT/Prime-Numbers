@@ -78,7 +78,7 @@ interval `10^3 ≤ n ≤ 10^5`:
 A ≈ -0.44, B ≈ 1.05.
 
 This expression reduces the maximal error from **≈ 2.3 %** (plain
-Rosser) to **≈ 0.006 %** for `n ≤ 10^5`.  For larger `n` the accuracy
+Rosser) to **≈ 0.006 %** (YUCT) for `n ≤ 10^5`.  For larger `n` the accuracy
 further improves because the relative correction grows more slowly than
 the prime itself.
 

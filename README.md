@@ -34,10 +34,7 @@ iterative refinement over all previous primes, no heuristic parameters.
 ### 2.1  The universal error law of YUCT
 
 Every stable coordinated system obeys
-\[
-\varepsilon = \kappa_c\,\alpha\,K_{\mathrm{eff}}^{-\beta},
-\qquad \beta = \frac{2}{3},\;\; \kappa_c = \frac{1}{3},
-\]
+ε = κ_c · α · K_eff^{-β}, β = 2/3, κ_c = 1/3
 where `ε` is the relative error (probability of activating a wrong
 dictionary entry), `K_eff` the coordination efficiency, and `α` a
 system‑specific constant of order 0.01–0.1.
@@ -56,16 +53,12 @@ pre‑activated entries — it possesses maximal coordination integrity.
 
 For the *n*-th prime `p_n` we hypothesise that its effective
 coordination efficiency scales as
-\[
-K_{\mathrm{eff}}(p_n) \propto p_n^{\delta}, \qquad \delta \approx 1.
-\]
+K_eff(p_n) ∝ p_n^δ, δ ≈ 1.
 The simplest choice `δ = 1` corresponds to the fact that a larger
 integer requires a proportionally larger dictionary.  
 Substituting into the universal error law gives an effective
 power‑law for the relative deviation:
-\[
-\varepsilon(p_n) \propto p_n^{-2/3}.
-\]
+ε(p_n) ∝ p_n^(-2/3).
 
 Numerical analysis (see below) confirms that the **local exponent** `γ`
 converges monotonically to `2/3` as `n` grows, providing an independent
@@ -76,20 +69,13 @@ validation of the universality of `β`.
 ## 3.  The YUST prime formula
 
 Starting from the classical Rosser approximation
-\[
-R_n = n\Bigl(\ln n + \ln\ln n - 1 + \frac{\ln\ln n - 2}{\ln n}\Bigr),
-\]
+R_n = n·(ln n + ln ln n - 1 + (ln ln n - 2)/ln n),
 we add a correction term that embodies the observed `2/3` scaling:
-\[
-\boxed{ p_n \;\approx\; R_n \;+\; A\,n^{1-\beta}\,(\ln n)^B },
-\qquad \beta = \frac{2}{3}.
-\]
+p_n ≈ R_n + A · n^(1-β) · (ln n)^B, β = 2/3.
 
 The constants `A` and `B` are obtained from a least‑squares fit on the
 interval `10^3 ≤ n ≤ 10^5`:
-\[
-A \approx -0.44, \qquad B \approx 1.05.
-\]
+A ≈ -0.44, B ≈ 1.05.
 
 This expression reduces the maximal error from **≈ 2.3 %** (plain
 Rosser) to **≈ 0.006 %** for `n ≤ 10^5`.  For larger `n` the accuracy

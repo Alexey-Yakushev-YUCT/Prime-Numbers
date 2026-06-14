@@ -41,7 +41,7 @@ def rosser(n: int) -> float:
 
 def yuct_nth_prime(n: int, mode: str = 'refined') -> int:
     """
-    Return the n-th prime using the YUST correction.
+    Return the n-th prime using the YUСT correction.
 
     Parameters
     ----------
@@ -83,7 +83,7 @@ def yuct_nth_prime(n: int, mode: str = 'refined') -> int:
 
 def yuct_dynamic_prime(n: int) -> int:
     """
-    Return the n-th prime using a dynamic, large‑n optimised YUST correction
+    Return the n-th prime using a dynamic, large‑n optimised YUСT correction
     with vacuum phase switch at n = 50000.
 
     The coefficients A and B are slowly varying functions of ln(n) that

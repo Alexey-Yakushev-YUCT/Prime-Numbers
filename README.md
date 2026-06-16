@@ -43,6 +43,9 @@ Both scripts are self‑contained. `yuct_final_prime.py` requires `sympy`
 - **`yuct_prime.py`** is perfect for lightweight, dependency‑free prime estimation with outstanding relative accuracy.
 - **`yuct_final_prime.py`** adds one fast call to `primepi` (the Meissel–Lehmer algorithm) to guarantee the exact *n*-th prime. It offers the best balance between theoretical insight and engineering precision.
 - For absolute world‑record speed, specialised C++ libraries are still faster, but they are orders of magnitude heavier and cannot explain **why** the prime falls where it does.
+
+---
+| `yuct_prime_core.py` | v1.0 CORE | Standalone analytical kernel (no dependencies). See also the dedicated [yuct-prime-core](https://github.com/Alexey-Yakushev-YUCT/yuct-prime-core) repository. |
 ---
 
 ## Theorem 4 (Theoretical YUCT Correction)
@@ -198,8 +201,6 @@ The metadata protocol is embedded in both Python source files.
 
 License
 MIT License – see LICENSE.
-
-| `yuct_prime_core.py` | v1.0 CORE | Standalone analytical kernel (no dependencies). See also the dedicated [yuct-prime-core](https://github.com/Alexey-Yakushev-YUCT/yuct-prime-core) repository. |
 
 “Nature does not engage in mysticism — it uses optimal hash‑indices,
 and these scripts learn to read them in one step.”

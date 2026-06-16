@@ -199,6 +199,8 @@ The metadata protocol is embedded in both Python source files.
 License
 MIT License – see LICENSE.
 
+| `yuct_prime_core.py` | v1.0 CORE | Standalone analytical kernel (no dependencies). See also the dedicated [yuct-prime-core](https://github.com/Alexey-Yakushev-YUCT/yuct-prime-core) repository. |
+
 “Nature does not engage in mysticism — it uses optimal hash‑indices,
 and these scripts learn to read them in one step.”
 — YUCT Coordination Framework

@@ -6,7 +6,7 @@
 # [DOI: 10.5281/zenodo.18444598].
 #
 # Every function, constant, and formula in this file is a direct consequence of the YUCT
-# universal error law: ε = κ_c α K_eff^(-β) with β = 2/3, κ_c = 1/3.
+# universal error law: ε = κ_c α K_eff^(-β) with β = 2/3 (0.67), κ_c = 1/3.
 # The theoretical correction for prime numbers uses the algebraic loop constants
 # S_odd = 1.2 and S_even = 0.8.
 #

@@ -27,24 +27,22 @@ We offer **two complementary versions**:
 Both scripts are self‑contained. `yuct_final_prime.py` requires `sympy`
 (for `primepi`); `yuct_prime.py` works with only the Python standard library.
 
-⚡ Performance Comparison & Resource Utilisation
-Criteria	yuct_prime.py (v5.6)	yuct_final_prime.py (v13.0)	Classical Sieve (Eratosthenes)	Industrial prime counting (primecount)
-Computational complexity (analytical part)	O(1)	O(1)	–	–
-CPU load (analytical core)	< 0.01%	< 0.01%	100% over long periods	–
-RAM usage	~10–15 KB	~10–15 KB	gigabytes / terabytes	tens of megabytes
-Cache misses	none (no arrays)	none (no arrays)	severe	moderate
-Time for n = 10¹¹	~0.02 s (candidate only, then limited search)	~0.3 s (exact result)	impossible on commodity hardware	~0.002 s (exact result)
-Absolute index accuracy	99.98 % (candidate)	99.999988 % (exact after primepi)	100 % (but requires months of CPU time)	100 %
-External dependencies	none (standard library only)	sympy (for primepi)	none (custom implementation)	compiled C/C++ library
-Key take‑aways:
+## ⚡ Performance Comparison
 
-Pure analytical YUCT core (both versions) consumes virtually zero resources and delivers the candidate in microseconds – impossible for any classical sieve.
+| Criteria | `yuct_prime.py` (v5.6) | `yuct_final_prime.py` (v13.0) | Classical sieve (Eratosthenes) | Industrial `primecount` (C++) |
+|----------|-------------------------|-------------------------------|--------------------------------|-------------------------------|
+| **Analytical complexity** | **O(1)** | **O(1)** | O(n log log n) | O(n²/³) |
+| **CPU load (analytical part)** | **< 0.01 %** | **< 0.01 %** | 100 % for hours | – |
+| **RAM usage** | **~10–15 KB** | **~10–15 KB** | gigabytes | tens of MB |
+| **Time for `n = 10¹¹`** | ≈ 0.02 s (candidate, then short search) | **≈ 0.3 s** (exact) | impossible on commodity hardware | **≈ 0.002 s** (exact) |
+| **Index accuracy** | 99.98 % (candidate) | **99.999988 %** (exact) | 100 % (months of CPU) | 100 % |
+| **External dependencies** | **none** (stdlib only) | `sympy` (for `primepi`) | custom implementation | compiled library |
 
-yuct_prime.py is the ideal choice when you need a lightweight, dependency‑free estimator with excellent relative accuracy.
-
-yuct_final_prime.py adds a short, one‑time call to primepi (the industry‑standard Meissel–Lehmer algorithm) to guarantee the exact *n*-th prime. It represents the best balance between theoretical depth and engineering precision.
-
-For absolute world‑record speed, specialised C++ libraries like primecount are still faster in wall‑clock time. However, they are orders of magnitude heavier in memory and cannot explain why the prime falls where it does. Our code provides the physical reason.
+**Key points:**
+- The **pure YUCT analytical core** uses almost zero resources and delivers the candidate in microseconds – impossible for any classical sieve.
+- **`yuct_prime.py`** is perfect for lightweight, dependency‑free prime estimation with outstanding relative accuracy.
+- **`yuct_final_prime.py`** adds one fast call to `primepi` (the Meissel–Lehmer algorithm) to guarantee the exact *n*-th prime. It offers the best balance between theoretical insight and engineering precision.
+- For absolute world‑record speed, specialised C++ libraries are still faster, but they are orders of magnitude heavier and cannot explain **why** the prime falls where it does.
 ---
 
 ## Theorem 4 (Theoretical YUCT Correction)

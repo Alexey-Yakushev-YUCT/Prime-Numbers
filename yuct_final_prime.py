@@ -19,13 +19,13 @@
 import math
 import sys
 
-# Быстрый точный счётчик простых чисел (алгоритм Мейсселя-Лемера)
+# Fast exact prime‑counting function (Meissel–Lehmer algorithm)
 try:
     from sympy import primepi
 except ImportError:
     import warnings
     warnings.warn("sympy not installed; large n will be slow. Install sympy for production.")
-    # Если sympy недоступен, используем заглушку (медленное решето только для малых n)
+    # Fallback: slow sieve for small n only
     def primepi(x):
         if x < 2: return 0
         limit = int(x)
@@ -39,7 +39,7 @@ except ImportError:
         return sum(sieve)
 
 def is_prime(n: int) -> bool:
-    """Детерминированный тест на простоту."""
+    """Deterministic primality test."""
     if n < 2: return False
     if n in (2, 3): return True
     if n % 2 == 0 or n % 3 == 0: return False
@@ -49,37 +49,37 @@ def is_prime(n: int) -> bool:
     return True
 
 def rosser(n: int) -> float:
-    """Приближение Россера для n-го простого числа."""
+    """Rosser's approximation for the n-th prime."""
     ln_n = math.log(n)
     ln_ln_n = math.log(ln_n)
     return n * (ln_n + ln_ln_n - 1 + (ln_ln_n - 2) / ln_n)
 
 def yuct_final_prime(n: int) -> int:
     """
-    Возвращает n-е простое число, используя теоретическую базу YUCT
-    и точную калибровку индекса через функцию primepi.
+    Return the n-th prime number using the YUCT theoretical base
+    and exact index calibration via the primepi function.
     """
     if n <= 5:
         return [2, 3, 5, 7, 11][n - 1]
 
-    # Фундаментальные константы YUCT
+    # Fundamental YUCT constants
     beta = 2 / 3
     S_odd, S_even = 1.2, 0.8
     kappa_c = 1 / 3
-    D = 19          # размерность координационного многообразия
-    L0 = 96         # число вейлевских полей
+    D = 19          # dimension of the coordination manifold
+    L0 = 96         # number of Weyl fields
     q = 1.5 ** (1 / 3)
 
     ln_n = math.log(n)
     ln_ln_n = math.log(ln_n)
     R = rosser(n)
 
-    # Координационная глубина и системный фазовый оператор (шаг 16.5)
+    # Coordination depth and systemic phase gate (step 16.5)
     N_f = ln_n / math.log(q)
     sin_arg = (math.pi / 16.5) * (N_f - 80.0)
     sign_gate = 1.0 if math.sin(sin_arg) >= 0 else -1.0
 
-    # Три контура поправок YUCT
+    # Three YUCT correction loops
     corr1 = sign_gate * (-S_even / 2) * (n ** (1 - beta)) * ln_n
     corr2 = - (S_even / kappa_c) * (n ** (1 / 3)) * (ln_ln_n ** (S_odd / S_even))
     corr3 = 0.0
@@ -87,23 +87,22 @@ def yuct_final_prime(n: int) -> int:
         ln_ln_ln_n = math.log(ln_ln_n)
         corr3 = - (S_odd * S_even) / (kappa_c * D) * (n ** (1 / 3)) * ln_ln_ln_n * (N_f / L0)
 
-    # Кандидат от чистого YUCT (относительная ошибка ~0.02%)
+    # Pure YUCT candidate (relative error ~0.02%)
     candidate = int(round(R + corr1 + corr2 + corr3))
 
-    # Точная калибровка индекса с помощью primepi
-    current_pi = primepi(candidate)   # количество простых чисел ≤ candidate
-    index_error = n - current_pi      # на сколько позиций мы ошиблись
+    # Exact index calibration using primepi
+    current_pi = primepi(candidate)   # number of primes ≤ candidate
+    index_error = n - current_pi      # how many positions we are off
 
-    # Векторный прыжок на основе теоремы о распределении простых чисел (PNT)
-    # Среднее расстояние между простыми ≈ ln(candidate)
+    # Vector jump based on the Prime Number Theorem (average gap ~ ln(candidate))
     if index_error != 0:
         candidate += int(round(index_error * math.log(candidate)))
 
-    # Приводим к нечётному для ускорения поиска
+    # Make candidate odd for faster search
     if candidate % 2 == 0:
         candidate += 1
 
-    # Локальный поиск (обычно не более нескольких шагов)
+    # Local search (usually only a few steps)
     while not is_prime(candidate):
         candidate += 2 if index_error >= 0 else -2
 
